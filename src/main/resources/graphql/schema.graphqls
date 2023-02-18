@@ -1,0 +1,28 @@
+type Query {
+    totalClicks(filter: Filter): Int
+    totalClicksGroupedBy(filter: Filter, groupBy: GroupBy): [Group]
+    clicksRate(filter: Filter): Float
+    impressionsOverTime(filter: Filter): [Group]
+}
+
+input Filter {
+    datasource: String
+    campaign: String
+    range: DateRange
+}
+
+input DateRange {
+    from: String
+    to: String
+}
+
+type Group {
+    key: String
+    value: Int
+}
+
+enum GroupBy {
+    DATASOURCE
+    CAMPAIGN
+    DATE
+}
